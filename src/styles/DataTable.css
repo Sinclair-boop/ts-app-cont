@@ -1,0 +1,15 @@
+/* DataTable.css */
+
+/* Cible l'en-tête de la DataGrid */
+.MuiDataGrid-colCellTitle {
+  background-color: blue;
+  color: white;
+}
+.custom-header {
+  /* background-color: #3b9bea;
+  color: #000; */
+}
+
+.custom-row {
+  background-color: #3b9bea; /* Set your desired background color */
+}
