@@ -27,7 +27,7 @@ interface Props {
   idModif: GridRowId;
   setIdModif: React.Dispatch<React.SetStateAction<GridRowId>>;
 }
-export default function FullFeaturedCrudGrid({
+export default function DataTable({
   contacts,
   setContacts,
   openModal,
@@ -38,7 +38,6 @@ export default function FullFeaturedCrudGrid({
   setIdModif,
 }: Props) {
   console.log("===> Les contact", contacts);
-
   // ===> SUPRIMER UN CONTACT
   const onDeleteContact = async (id: GridRowId) => {
     try {
@@ -75,14 +74,20 @@ export default function FullFeaturedCrudGrid({
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    window.confirm("Voulez vous vraiment supprimer");
-    onDeleteContact(id);
+    let verif = window.confirm("Voulez vous vraiment supprimer");
+    if (verif) onDeleteContact(id);
   };
 
   const columns: GridColDef[] = [
     { field: "firstName", headerName: "Nom", width: 180, editable: true },
     { field: "lastName", headerName: "Prenom", width: 180, editable: true },
     { field: "email", headerName: "Email", width: 180, editable: true },
+    {
+      field: "nbr",
+      headerName: "Nombre d'enfants",
+      width: 180,
+      editable: true,
+    },
 
     {
       align: "right",
@@ -90,7 +95,7 @@ export default function FullFeaturedCrudGrid({
       field: "actions",
       type: "actions",
       headerName: "Actions",
-      width: 100,
+      width: 300,
       cellClassName: "actions",
       getActions: ({ id }) => {
         return [
@@ -111,7 +116,9 @@ export default function FullFeaturedCrudGrid({
       },
     },
   ];
-
+  const contactsAff = contacts.map((contact) => {
+    return { ...contact, nbr: 2 };
+  });
   return (
     <Box
       sx={{

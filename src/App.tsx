@@ -1,4 +1,4 @@
-import FormModal from "./components/FormModal";
+import { ContactsApp } from "./components/ContactsApp";
 
-const App = () => <FormModal />;
+const App = () => <ContactsApp />;
 export default App;
